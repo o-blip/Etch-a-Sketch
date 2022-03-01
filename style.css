@@ -1,4 +1,8 @@
-.container{
+body {
+    box-sizing: border-box;
+}
+
+.container {
     display: flex;
     width: 32vw;
     flex-wrap: wrap;
@@ -9,5 +13,9 @@
     background-color: black;
     width: 2vw;
     height: 2vw;
-    
+
+}
+
+.hover {
+    background-color: orange;
 }
