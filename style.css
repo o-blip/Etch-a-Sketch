@@ -4,15 +4,13 @@ body {
 
 .container {
     display: flex;
-    width: 32vw;
+    width: 1000px;
     flex-wrap: wrap;
 
 }
 
 .square {
     background-color: black;
-    width: 2vw;
-    height: 2vw;
 
 }
 
