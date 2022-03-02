@@ -4,8 +4,7 @@ addHover(); // create initial hover effect
 // reset grid and create new grid
 const button = document.querySelector('#reset');
 button.addEventListener('click', () => {
-    let gridSize = prompt('Enter a grid size (max 100)');
-    console.log(gridSize);
+    let gridSize = prompt('Enter an integer grid size (max 100)');
     createGrid(gridSize);
     addHover();
 })
@@ -30,23 +29,19 @@ function addHover() {
             }
         });
     });
-
 }
-
-
-
-
 
 function createGrid(grid = 16) {
     if (isNaN(grid)) {
         // in case user enters not a number
         grid = 16;
     }
-    grid = Math.floor(grid);
-    const boxes = document.querySelectorAll(".container div");
+    grid = Math.floor(grid); // in case not an integer
+
+    const boxes = document.querySelectorAll(".square");
     boxes.forEach((box) => box.remove());
     const container = document.querySelector('.container');
-    const widthBox = 1000 / grid; // problem with decimal pixels maybe?
+    const widthBox = 960 / grid; // problem with decimal pixels maybe?
     for (let i = 0; i < grid * grid; i++) {
         const div = document.createElement('div');
         container.appendChild(div);
