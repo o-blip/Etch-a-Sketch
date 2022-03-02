@@ -10,18 +10,23 @@ button.addEventListener('click', () => {
     addHover();
 })
 
-//
+
 function addHover() {
     const squares = document.querySelectorAll('.square');
     squares.forEach((square) => {
         square.addEventListener('mouseover', () => {
-            // need to skip filled squares, and darken them instead of replace the color with
-            // another random color. <if background-color not empty => darken shade, 
-            //                          else background-color = randomColor>
             if (square.style.backgroundColor === '') {
                 const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+                console.log(randomColor);
                 square.style.backgroundColor = '#' + randomColor;
-
+            } else if (square.style.opacity > 0) {
+                // background of grid is black, so increasing opacity will
+                // create a shade of the color
+                square.style.opacity -= .1;
+            } else {
+                // once opacity reaches 0, i.e. square is black, will get a new color
+                square.style.opacity = 1;
+                square.style.backgroundColor = '';
             }
         });
     });
@@ -34,8 +39,10 @@ function addHover() {
 
 function createGrid(grid = 16) {
     if (isNaN(grid)) {
+        // in case user enters not a number
         grid = 16;
     }
+    grid = Math.floor(grid);
     const boxes = document.querySelectorAll(".container div");
     boxes.forEach((box) => box.remove());
     const container = document.querySelector('.container');
@@ -46,6 +53,7 @@ function createGrid(grid = 16) {
         div.classList.add('square');
         div.style.width = `${widthBox}px`;
         div.style.height = `${widthBox}px`;
+        div.style.opacity = '1';
     }
 }
 
